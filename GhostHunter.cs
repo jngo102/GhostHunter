@@ -58,7 +58,7 @@ namespace GhostHunter
             this.ExtractAnimation();
             ghostAnim = CustomAnimation.LoadAnimation(Path.Combine(currentDirectory,"ghost.json"));
             HkmpPipe = new HkmpPipe("ghostState",false);
-            HkmpPipe.OnRecieve += (_,R) =>{
+            HkmpPipe.OnReceive += (_,R) =>{
                 var p = R.packet;
                 if(p.eventName == EVENT.UPDATE){
                     var ghostData = p.eventData.Split('|');
@@ -117,7 +117,7 @@ namespace GhostHunter
 
         public void HeroControllerStart(On.HeroController.orig_Start orig,HeroController self){
             orig(self);
-            HkmpPipe.startListening();
+            HkmpPipe.StartListening();
             ModHooks.HeroUpdateHook += update;
             UnityEngine.SceneManagement.SceneManager.activeSceneChanged += activeSceneChanged;
             ModHooks.SlashHitHook += OnSlashHit;

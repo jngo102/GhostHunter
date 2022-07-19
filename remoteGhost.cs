@@ -14,13 +14,13 @@ namespace GhostHunter
 
         void Start()
         {
-            GhostHunter.Instance.HkmpPipe.OnRecieve += handlePacketRecieve;
+            GhostHunter.Instance.HkmpPipe.OnReceive += handlePacketRecieve;
             sr = GetComponent<SpriteRenderer>();
         }
         void OnDestroy(){
-            GhostHunter.Instance.HkmpPipe.OnRecieve -= handlePacketRecieve;
+            GhostHunter.Instance.HkmpPipe.OnReceive -= handlePacketRecieve;
         }
-        void handlePacketRecieve(object _,RecievedEventArgs R){
+        void handlePacketRecieve(object _,ReceivedEventArgs R){
             var p = R.packet;
             var playerIdString = p.fromPlayer.ToString();
             if(playerIdString != playerId) {return;}
